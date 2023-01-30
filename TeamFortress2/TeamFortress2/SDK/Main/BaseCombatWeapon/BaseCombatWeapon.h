@@ -20,7 +20,7 @@ public: //Netvars
         M_OFFSETGET(Healing, int, 0xC51) //DT_WeaponMedigun -> m_bHealing
 
 public: //Virtuals
-	M_VIRTUALGET(WeaponID, int, this, int(__thiscall*)(void*), 380)
+	M_VIRTUALGET(WeaponID, int, this, int(__thiscall*)(void*), 381)
 	M_VIRTUALGET(Slot, int, this, int(__thiscall*)(void*), 330)
 	M_VIRTUALGET(DamageType, int, this, int(__thiscall*)(void*), 340)	// old one was 378, but comparing to fedoraware, it decreased???
 	M_VIRTUALGET(FinishReload, void, this, void(__thiscall*)(void*), 275)
@@ -64,7 +64,7 @@ public: //Everything else, lol
 	}
 
 	__inline float GetSwingRange(CBaseEntity* pLocal) {
-		return static_cast<float>(GetVFunc<int(__thiscall*)(CBaseEntity*)>(this, 454)(pLocal));
+		return static_cast<float>(GetVFunc<int(__thiscall*)(CBaseEntity*)>(this, 455)(pLocal));
 	}
 
 	__inline float GetWeaponSpread() {
@@ -78,14 +78,14 @@ public: //Everything else, lol
 	}
 
 	__inline bool DoSwingTrace(CGameTrace& Trace) {
-		return GetVFunc<int(__thiscall*)(CGameTrace&)>(this, 453)(Trace);
+		return GetVFunc<int(__thiscall*)(CGameTrace&)>(this, 454)(Trace);
 	}
 
 	__inline bool CanFireCriticalShot(const bool bHeadShot) {
 		bool bResult = false;
 		if (const auto& pOwner = g_Interfaces.EntityList->GetClientEntityFromHandle(GethOwner())) {
 			const int nOldFov = pOwner->GetFov(); pOwner->SetFov(70);
-			bResult = GetVFunc<bool(__thiscall*)(decltype(this), bool, CBaseEntity*)>(this, 424)(this, bHeadShot, nullptr);
+			bResult = GetVFunc<bool(__thiscall*)(decltype(this), bool, CBaseEntity*)>(this, 425)(this, bHeadShot, nullptr);
 			pOwner->SetFov(nOldFov);
 		} return bResult;
 	}
